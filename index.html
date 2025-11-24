@@ -1,264 +1,222 @@
 <!DOCTYPE html>
 <html lang="en">
 
-  <head>
-    <meta charset="UTF-8">
-    <title>Untitled</title>
-    <style>
-      * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            transition: all 0.3s ease;
-            background: #30302e;
-        }
-        
-        .clock-container {
-            background: var(--bg-color);
-            border: 2px solid var(--border-color);
-            border-radius: 20px;
-            padding: 2.5rem;
-            box-shadow: var(--shadow);
-            transition: all 0.3s ease;
-            text-align: center;
-            min-width: 320px;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .clock-container::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(59, 130, 246, 0.1) 0%, transparent 70%);
-            animation: shimmer 6s ease-in-out infinite;
-            pointer-events: none;
-        }
-        
-        @keyframes shimmer {
-            0%, 100% { transform: rotate(0deg) scale(1); opacity: 0.3; }
-            50% { transform: rotate(180deg) scale(1.1); opacity: 0.6; }
-        }
-        
-        .clock-time {
-            font-size: 3.5rem;
-            font-weight: 200;
-            color: var(--text-primary);
-            font-variant-numeric: tabular-nums;
-            letter-spacing: -0.02em;
-            line-height: 1;
-            margin-bottom: 0.5rem;
-            text-shadow: 0 2px 4px rgba(59, 130, 246, 0.2);
-            position: relative;
-            z-index: 1;
-        }
-        
-        .clock-date {
-            font-size: 1.125rem;
-            color: var(--text-secondary);
-            font-weight: 300;
-            margin-bottom: 0.25rem;
-            position: relative;
-            z-index: 1;
-        }
-        
-        .clock-day {
-            font-size: 0.875rem;
-            color: var(--text-tertiary);
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            position: relative;
-            z-index: 1;
-        }
-        
-        .clock-seconds {
-            font-size: 1.5rem;
-            color: var(--accent-color);
-            font-weight: 200;
-            margin-top: 0.5rem;
-            position: relative;
-            z-index: 1;
-            animation: pulse 2s ease-in-out infinite;
-        }
-        
-        @keyframes pulse {
-            0%, 100% { opacity: 0.7; transform: scale(1); }
-            50% { opacity: 1; transform: scale(1.05); }
-        }
-        
-        :root {
-            --bg-color: linear-gradient(135deg, #eff6ff 0%, #dbeafe 50%, #bfdbfe 100%);
-            --text-primary: #1e3a8a;
-            --text-secondary: #2563eb;
-            --text-tertiary: #3b82f6;
-            --border-color: #93c5fd;
-            --shadow: 0 8px 25px -5px rgba(59, 130, 246, 0.2),
-                      0 4px 10px -3px rgba(59, 130, 246, 0.1);
-            --accent-color: #3b82f6;
-        }
-        
-        @media (prefers-color-scheme: dark) {
-            :root {
-                --bg-color: linear-gradient(135deg, #1e293b 0%, #1e3a8a 50%, #172554 100%);
-                --text-primary: #dbeafe;
-                --text-secondary: #93c5fd;
-                --text-tertiary: #60a5fa;
-                --border-color: #3b4c80;
-                --shadow: 0 8px 25px -5px rgba(96, 165, 250, 0.3),
-                          0 4px 10px -3px rgba(96, 165, 250, 0.2);
-                --accent-color: #60a5fa;
-            }
-        }
-        
-        body.notion-light-theme {
-            --bg-color: linear-gradient(135deg, #eff6ff 0%, #dbeafe 50%, #bfdbfe 100%);
-            --text-primary: #1e3a8a;
-            --text-secondary: #2563eb;
-            --text-tertiary: #3b82f6;
-            --border-color: #93c5fd;
-            --shadow: 0 8px 25px -5px rgba(59, 130, 246, 0.2),
-                      0 4px 10px -3px rgba(59, 130, 246, 0.1);
-            --accent-color: #3b82f6;
-        }
-        
-        body.notion-dark-theme {
-            --bg-color: linear-gradient(135deg, #1e293b 0%, #1e3a8a 50%, #172554 100%);
-            --text-primary: #dbeafe;
-            --text-secondary: #93c5fd;
-            --text-tertiary: #60a5fa;
-            --border-color: #3b4c80;
-            --shadow: 0 8px 25px -5px rgba(96, 165, 250, 0.3),
-                      0 4px 10px -3px rgba(96, 165, 250, 0.2);
-            --accent-color: #60a5fa;
-        }
-        
-        @media (max-width: 480px) {
-            .clock-container {
-                padding: 2rem;
-                min-width: 280px;
-            }
-            
-            .clock-time {
-                font-size: 2.75rem;
-            }
-            
-            .clock-date {
-                font-size: 1rem;
-            }
-            
-            .clock-day {
-                font-size: 0.8rem;
-            }
-            
-            .clock-seconds {
-                font-size: 1.25rem;
-            }
-        }
-    </style>
-
-  </head>
-    
-  <body>
-  <!DOCTYPE html>
-<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Notion Digital Clock</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <title>Clock Widget</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      transition: all 0.3s ease;
+      background: #30302e;
+    }
+
+    .widget-scale {
+      transform: scale(0.6);
+      transform-origin: top center;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    }
+
+    .clock-container {
+      background: var(--bg-color);
+      border: 2px solid var(--border-color);
+      border-radius: 20px;
+      padding: 2.5rem;
+      box-shadow: var(--shadow);
+      transition: all 0.3s ease;
+      text-align: center;
+      min-width: 320px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .clock-container::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(59, 130, 246, 0.1) 0%, transparent 70%);
+      animation: shimmer 6s ease-in-out infinite;
+      pointer-events: none;
+    }
+
+    @keyframes shimmer {
+      0%, 100% { transform: rotate(0deg) scale(1); opacity: 0.3; }
+      50% { transform: rotate(180deg) scale(1.1); opacity: 0.6; }
+    }
+
+    .clock-time {
+      font-size: 3.5rem;
+      font-weight: 200;
+      color: var(--text-primary);
+      font-variant-numeric: tabular-nums;
+      letter-spacing: -0.02em;
+      line-height: 1;
+      margin-bottom: 0.5rem;
+      text-shadow: 0 2px 4px rgba(59, 130, 246, 0.2);
+      position: relative;
+      z-index: 1;
+    }
+
+    .clock-date {
+      font-size: 1.125rem;
+      color: var(--text-secondary);
+      font-weight: 300;
+      margin-bottom: 0.25rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .clock-day {
+      font-size: 0.875rem;
+      color: var(--text-tertiary);
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      position: relative;
+      z-index: 1;
+    }
+
+    .clock-seconds {
+      font-size: 1.5rem;
+      color: var(--accent-color);
+      font-weight: 200;
+      margin-top: 0.5rem;
+      position: relative;
+      z-index: 1;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 0.7; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.05); }
+    }
+
+    :root {
+      --bg-color: linear-gradient(135deg, #eff6ff 0%, #dbeafe 50%, #bfdbfe 100%);
+      --text-primary: #1e3a8a;
+      --text-secondary: #2563eb;
+      --text-tertiary: #3b82f6;
+      --border-color: #93c5fd;
+      --shadow: 0 8px 25px -5px rgba(59, 130, 246, 0.2),
+                0 4px 10px -3px rgba(59, 130, 246, 0.1);
+      --accent-color: #3b82f6;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg-color: linear-gradient(135deg, #1e293b 0%, #1e3a8a 50%, #172554 100%);
+        --text-primary: #dbeafe;
+        --text-secondary: #93c5fd;
+        --text-tertiary: #60a5fa;
+        --border-color: #3b4c80;
+        --shadow: 0 8px 25px -5px rgba(96, 165, 250, 0.3),
+                  0 4px 10px -3px rgba(96, 165, 250, 0.2);
+        --accent-color: #60a5fa;
+      }
+    }
+
+    body.notion-light-theme {
+      --bg-color: linear-gradient(135deg, #eff6ff 0%, #dbeafe 50%, #bfdbfe 100%);
+      --text-primary: #1e3a8a;
+      --text-secondary: #2563eb;
+      --text-tertiary: #3b82f6;
+      --border-color: #93c5fd;
+      --shadow: 0 8px 25px -5px rgba(59, 130, 246, 0.2),
+                0 4px 10px -3px rgba(59, 130, 246, 0.1);
+      --accent-color: #3b82f6;
+    }
+
+    body.notion-dark-theme {
+      --bg-color: linear-gradient(135deg, #1e293b 0%, #1e3a8a 50%, #172554 100%);
+      --text-primary: #dbeafe;
+      --text-secondary: #93c5fd;
+      --text-tertiary: #60a5fa;
+      --border-color: #3b4c80;
+      --shadow: 0 8px 25px -5px rgba(96, 165, 250, 0.3),
+                0 4px 10px -3px rgba(96, 165, 250, 0.2);
+      --accent-color: #60a5fa;
+    }
+  </style>
 </head>
+
 <body>
-  <div class="clock-container">
-    <div class="clock-time" id="time">00:00</div>
-    <div class="clock-seconds" id="seconds">00</div>
-    <div class="clock-date" id="date">Loading...</div>
-    <div class="clock-day" id="day">Loading...</div>
+
+  <!-- ⭐ SCALE WRAPPER ADDED HERE -->
+  <div class="widget-scale">
+    <div class="clock-container">
+      <div class="clock-time" id="time">00:00</div>
+      <div class="clock-seconds" id="seconds">00</div>
+      <div class="clock-date" id="date">Loading...</div>
+      <div class="clock-day" id="day">Loading...</div>
+    </div>
   </div>
 
+  <script>
+    function updateClock() {
+      const now = new Date();
+
+      const hours = now.getHours().toString().padStart(2, '0');
+      const minutes = now.getMinutes().toString().padStart(2, '0');
+      const seconds = now.getSeconds().toString().padStart(2, '0');
+
+      const options = {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+      };
+      const dateString = now.toLocaleDateString('en-US', options);
+      const dayString = now.toLocaleDateString('en-US', { weekday: 'long' });
+
+      document.getElementById('time').textContent = `${hours}:${minutes}`;
+      document.getElementById('seconds').textContent = seconds;
+      document.getElementById('date').textContent = dateString;
+      document.getElementById('day').textContent = dayString;
+    }
+
+    function detectTheme() {
+      try {
+        const parentDoc = window.parent.document;
+        const notionRoot =
+          parentDoc.querySelector('[data-theme]') ||
+          parentDoc.documentElement;
+
+        const theme =
+          notionRoot.getAttribute('data-theme') ||
+          notionRoot.getAttribute('class') ||
+          getComputedStyle(notionRoot).getPropertyValue('color-scheme');
+
+        document.body.className = theme.includes('dark')
+          ? 'notion-dark-theme'
+          : 'notion-light-theme';
+      } catch {
+        document.body.className =
+          window.matchMedia('(prefers-color-scheme: dark)').matches
+            ? 'notion-dark-theme'
+            : 'notion-light-theme';
+      }
+    }
+
+    updateClock();
+    detectTheme();
+    setInterval(updateClock, 1000);
+    setInterval(detectTheme, 1000);
+  </script>
+
 </body>
-</html>
-    <script>
-      
-        function updateClock() {
-            const now = new Date();
-            
-            const hours = now.getHours().toString().padStart(2, '0');
-            const minutes = now.getMinutes().toString().padStart(2, '0');
-            const seconds = now.getSeconds().toString().padStart(2, '0');
-            
-            const options = { 
-                year: 'numeric', 
-                month: 'long', 
-                day: 'numeric'
-            };
-            const dateString = now.toLocaleDateString('en-US', options);
-            
-            const dayString = now.toLocaleDateString('en-US', { weekday: 'long' });
-            
-            document.getElementById('time').textContent = `${hours}:${minutes}`;
-            document.getElementById('seconds').textContent = seconds;
-            document.getElementById('date').textContent = dateString;
-            document.getElementById('day').textContent = dayString;
-        }
-
-        function detectTheme() {
-            if (window.parent !== window) {
-                try {
-                    const parentDoc = window.parent.document;
-                    const notionRoot = parentDoc.querySelector('[data-theme]') || parentDoc.documentElement;
-                    
-                    if (notionRoot) {
-                        const theme = notionRoot.getAttribute('data-theme') || 
-                                     notionRoot.getAttribute('class') || 
-                                     getComputedStyle(notionRoot).getPropertyValue('color-scheme');
-                        
-                        if (theme && theme.includes('dark')) {
-                            document.body.className = 'notion-dark-theme';
-                        } else {
-                            document.body.className = 'notion-light-theme';
-                        }
-                    }
-                } catch (e) {
-                    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-                        document.body.className = 'notion-dark-theme';
-                    } else {
-                        document.body.className = 'notion-light-theme';
-                    }
-                }
-            } else {
-                if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-                    document.body.className = 'notion-dark-theme';
-                } else {
-                    document.body.className = 'notion-light-theme';
-                }
-            }
-        }
-
-        updateClock();
-        detectTheme();
-        
-        setInterval(updateClock, 1000);
-        
-        if (window.matchMedia) {
-            window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', detectTheme);
-        }
-        
-        setInterval(detectTheme, 1000);
-
-    </script>
-
-  </body>
-  
 </html>
